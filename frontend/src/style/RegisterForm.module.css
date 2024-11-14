@@ -1,0 +1,125 @@
+.formContainer {
+  width: 650px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  padding: 14px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.button {
+  padding: 14px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.switchButton {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.switchButton:hover {
+  color: #0056b3;
+}
+
+.resetButton {
+  padding: 12px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s;
+  margin-top: 15px;
+}
+
+.resetButton:hover {
+  color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .formContainer {
+    padding: 25px;
+    max-width: 90%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .input {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .switchButton {
+    font-size: 14px;
+  }
+
+  .resetButton {
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+}
