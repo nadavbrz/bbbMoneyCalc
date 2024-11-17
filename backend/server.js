@@ -13,7 +13,9 @@ app.use(express.json());
 mongoConnect.connectToMongo();
 
 app.use("/users", userRoutes);
-
+app.get('/', (req, res) => {
+  res.send('Welcome to the backend API!');
+});
 
 
 app.listen(PORT, () => {
