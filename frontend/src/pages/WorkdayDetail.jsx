@@ -107,7 +107,7 @@ const WorkdayDetails = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://bbb_server.brzcode.site/users/workDay/${id}`,
+        `https://bbb-server.brzcode.site/users/workDay/${id}`,
         {
           method: "PUT",
           headers: {

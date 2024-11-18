@@ -33,7 +33,7 @@ const ResetPassword = () => {
 
     try {
       const response = await fetch(
-        "https://bbb_server.brzcode.site/users/reset-password",
+        "https://bbb-server.brzcode.site/users/reset-password",
         {
           method: "POST",
           headers: {
