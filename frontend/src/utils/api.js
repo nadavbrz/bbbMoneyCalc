@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4040/users",
+  baseURL: "https://bbb_server.brzcode.site/users",
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +11,7 @@ export const addWorkday = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "http://localhost:4040/users/workday",
+      "https://bbb_server.brzcode.site/users/workday",
       data,
       {
         headers: {
@@ -30,7 +30,7 @@ export const addWorkday = async (data) => {
 export const getWorkdays = async () => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get("http://localhost:4040/users/allWorkDays", {
+    const response = await axios.get("https://bbb_server.brzcode.site/users/allWorkDays", {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const getWorkdays = async () => {
 export const getWorkdayById = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(`http://localhost:4040/users/allWorkDays/${id}`, {
+    const response = await axios.get(`https://bbb_server.brzcode.site/users/allWorkDays/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export const editWorkday = async (id, data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.put(
-      `http://localhost:4040/users/workDay/${id}`,
+      `https://bbb_server.brzcode.site/users/workDay/${id}`,
       data,
       {
         headers: {
@@ -82,7 +82,7 @@ export const editWorkday = async (id, data) => {
 export const deleteWorkday = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.delete(`http://localhost:4040/users/workDay/${id}`, {
+    const response = await axios.delete(`https://bbb_server.brzcode.site/users/workDay/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ const loginUser = async (userData) => {
 
 const requestPasswordReset = async (email) => {
   try {
-    const response = await axios.post("http://localhost:4040/users/send-reset-password-email", {
+    const response = await axios.post("https://bbb_server.brzcode.site/users/send-reset-password-email", {
       mail: email,
     });
     return response.data;
