@@ -53,7 +53,7 @@ const RegisterForm = () => {
         <input
           type="text"
           id="mail"
-          placeholder="Gmail.com@אבוזניד"
+          placeholder="כתובת מייל"
           value={mail}
           onChange={(e) => setMail(e.target.value)}
           className={classes.input}

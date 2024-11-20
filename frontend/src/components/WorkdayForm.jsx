@@ -21,6 +21,7 @@ const WorkdayForm = () => {
   const [hoursWorked, setHoursWorked] = useState(0);
   const [totalEarnings, setTotalEarnings] = useState(0);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false); // State to manage loading
 
   const calculateHoursWorked = () => {
     const start = new Date(`1970-01-01T${startTime}:00`);
@@ -40,8 +41,16 @@ const WorkdayForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading before the request
+
     const selectedDate = new Date(date);
-    const formattedDate = `${String(selectedDate.getDate()).padStart(2, "0")}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${selectedDate.getFullYear()}`;
+    const formattedDate = `${String(selectedDate.getDate()).padStart(
+      2,
+      "0"
+    )}-${String(selectedDate.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${selectedDate.getFullYear()}`;
     const calculatedHours = calculateHoursWorked();
 
     const workdayData = {
@@ -62,14 +71,33 @@ const WorkdayForm = () => {
     try {
       const result = await api.addWorkday(workdayData);
       setMessage("משמרת נשמרה בהצלחה");
+      setTimeout(() => setMessage(""), 5000); // Hide the message after 5 seconds
+      // Clear form after submission
+      setDate("");
+      setStartTime("10:30");
+      setEndTime("18:00");
+      setShiftTiming("morning");
+      setShiftType("full-time");
+      setIsFridayEvening(false);
+      setIsSaturday(false);
+      setCustomHourlyRate(0);
+      setTips(0);
+      setHourlyTips(0);
+      setHoursWorked(0);
+      setTotalEarnings(0);
     } catch (error) {
       console.error("Error adding workday:", error);
+      setMessage("הייתה בעיה בשמירה. נסה שנית.");
+    } finally {
+      setLoading(false); // Stop loading after request is finished
     }
   };
 
   return (
     <>
-      {!token && <h1 className={classes.loginText}>תתחבר/י כדי להוסיף משמרת</h1>}
+      {!token && (
+        <h1 className={classes.loginText}>תתחבר/י כדי להוסיף משמרת</h1>
+      )}
       <form className={classes.form} onSubmit={handleSubmit}>
         {token && <h2 className={classes.title}>הוספת משמרת</h2>}
         <div className={classes.formGroup}>
@@ -115,7 +143,8 @@ const WorkdayForm = () => {
         </div>
         <div className={classes.formGroup}>
           <label htmlFor="shiftTiming" className={classes.label}>
-            <IoSunny className={classes.icon} /> / <IoMoon className={classes.icon} /> בחר זמן משמרת:
+            <IoSunny className={classes.icon} /> /{" "}
+            <IoMoon className={classes.icon} /> בחר זמן משמרת:
           </label>
           <select
             id="shiftTiming"
@@ -204,11 +233,12 @@ const WorkdayForm = () => {
           />
         </div>
         <div className={classes.submitBox}>
-          {token && (
+          {token && !loading && (
             <button type="submit" className={classes.submitButton}>
               שמור משמרת
             </button>
           )}
+          {loading && <p className={classes.loadingText}>שומר... </p>}
           <p className={classes.submitMessage}>{message}</p>
         </div>
       </form>

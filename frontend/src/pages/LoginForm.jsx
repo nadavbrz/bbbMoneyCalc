@@ -33,7 +33,7 @@ const LoginForm = () => {
 
   return (
     <div className={classes.formContainer}>
-      <h2>התחברות</h2>
+      <h2>כניסה</h2>
       {error && <p className={classes.error}>{error}</p>}
       <form onSubmit={handleSubmit} className={classes.form}>
         <input

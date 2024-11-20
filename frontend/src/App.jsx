@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/Root";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import AddWorkday from "./pages/AddWorkday";
 import RegisterForm from "./pages/RegisterForm";
 import LoginForm from "./pages/LoginForm";
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      // {path :"/" , element : <Home />},
+      {path :"/" , element : <Home />},
       { path: "/addWorkDay", element: <AddWorkday /> },
       { path: "/allWorkDays", element: <Workdays /> },
       { path: "/register", element: <RegisterForm /> },

@@ -1,45 +1,104 @@
 .container {
-  width: 600px;
-  margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
 }
 
 .title {
   font-size: 24px;
+  color: #333;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .details {
-  display: flex;
-  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.details p {
+  font-size: 16px;
+  color: #555;
+  margin: 8px 0;
 }
 
 .detailsNonEditable p {
-  margin: 5px 0;
+  font-weight: bold;
 }
 
-.formEditable input,
-.formEditable select,
-.formEditable button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.actionButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 10px;
 }
 
-.formEditable button {
-  background-color: #007bff;
+.editBtn {
+  background-color: #ffa500;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.formEditable button:hover {
-  background-color: #0056b3;
+.editBtn:hover {
+  background-color: #ff8c00;
+}
+
+.editBtn svg {
+  margin-left: 5px;
+}
+
+.deleteBtn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.deleteBtn:hover {
+  background-color: #e53935;
+}
+
+.deleteBtn svg {
+  margin-left: 5px;
+}
+
+.backBtn {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.backBtn:hover {
+  background-color: #1976d2;
+}
+
+.backBtn svg {
+  margin-left: 5px;
+}
+
+.form {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .inputGroup {
@@ -47,9 +106,10 @@
 }
 
 .inputGroup label {
-  display: block;
   font-size: 16px;
-  margin-bottom: 5px;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .inputGroup input {
@@ -57,56 +117,91 @@
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
-.inputGroup input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.inputGroup input[type="number"]::-webkit-outer-spin-button,
-.inputGroup input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.actionButtons button {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
+.submitEdit,
+.cancelEdit {
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
-.actionButtons button:hover {
-  background-color: #0056b3;
+.submitEdit {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  width: 48%;
 }
 
-.actionButtons button svg {
-  margin-left: 5px;
+.submitEdit:hover {
+  background-color: #45a049;
 }
 
-.loading {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #007bff;
+.cancelEdit {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  width: 48%;
 }
 
+.cancelEdit:hover {
+  background-color: #e53935;
+}
+
+.loading,
 .error {
   text-align: center;
   font-size: 18px;
-  font-weight: bold;
-  color: red;
+  color: #d32f2f;
+  margin-top: 20px;
 }
 
-.form button {
-  background-color: #28a745;
+.error {
+  color: #d32f2f;
 }
 
-.form button:hover {
-  background-color: #218838;
+.detailsNonEditable p,
+.detailsNonEditable .actionButtons {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .details {
+    padding: 15px;
+  }
+
+  .inputGroup input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .submitEdit,
+  .cancelEdit {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .editBtn,
+  .deleteBtn,
+  .backBtn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+  }
 }

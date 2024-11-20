@@ -1,5 +1,5 @@
 .formContainer {
-  width: 650px;
+  max-width: 650px;
   margin: 50px auto;
   padding: 40px;
   background-color: #fff;

@@ -160,14 +160,14 @@ const WorkdayDetails = () => {
           </p>
           <p>סך הכל: {workday.totalEarnings}</p>
           <div className={classes.actionButtons}>
-            <button className={classes.btn} onClick={handleEditToggle}>
+            <button className={classes.editBtn} onClick={handleEditToggle}>
               ערוך <CiEdit />
             </button>
-            <button className={classes.btn} onClick={handleDelete}>
+            <button className={classes.deleteBtn} onClick={handleDelete}>
               מחק משמרת <MdDelete />
             </button>
             <button
-              className={classes.btn}
+              className={classes.backBtn}
               onClick={() => navigate("/allWorkDays")}
             >
               חזור <IoMdArrowRoundBack />
@@ -201,17 +201,7 @@ const WorkdayDetails = () => {
               required
             />
           </div>
-          <div className={classes.inputGroup}>
-            <label htmlFor="checkEarnings">כסף שהולך לצ'ק:</label>
-            <input
-              type="number"
-              id="checkEarnings"
-              name="checkEarnings"
-              value={formData.checkEarnings}
-              onChange={handleChange}
-              required
-            />
-          </div>
+
           <div className={classes.inputGroup}>
             <label htmlFor="tips">טיפים:</label>
             <input
@@ -234,8 +224,8 @@ const WorkdayDetails = () => {
               min={0}
             />
           </div>
-          <button type="submit">שמור</button>
-          <button onClick={handleEditToggle} type="button">
+          <button className={classes.submitEdit} type="submit">שמור</button>
+          <button className={classes.cancelEdit} onClick={handleEditToggle} type="button">
             בטל עריכה
           </button>
         </form>
