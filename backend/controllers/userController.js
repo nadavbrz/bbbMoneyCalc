@@ -13,30 +13,30 @@ const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const role = mail === `${mail}` ? "admin" : "user";
+
+    const role = mail === process.env.ADMIN_EMAIL ? "admin" : "user";  
+
     const user = new User({ mail, password: hashedPassword, role });
     await user.save();
 
     const token = jwt.sign(
-      { userId: user._id, mail: user.mail, role: user.role  },
+      { userId: user._id, mail: user.mail, role: user.role },
       process.env.SECRET_KEY,
       { expiresIn: "30d" }
     );
 
-    res
-      .status(201)
-      .json({
-        message: "המשתמש נוצר",
-        mail: user.mail,
-        role: user.role,
-        token: token,
-      });
+    res.status(201).json({
+      message: "המשתמש נוצר",
+      mail: user.mail,
+      role: user.role,
+      token: token,
+    });
   } catch (err) {
-    res
-      .status(400)
-      .json({ message: "שגיאה ביצירת המשתמש", error: err.message });
+    res.status(400).json({ message: "שגיאה ביצירת המשתמש", error: err.message });
   }
 };
+
+
 
 const loginUser = async (req, res) => {
   const { mail, password } = req.body;

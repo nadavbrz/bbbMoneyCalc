@@ -73,8 +73,7 @@ const WorkdayForm = () => {
     try {
       const result = await api.addWorkday(workdayData);
       setMessage("משמרת נשמרה בהצלחה");
-      setTimeout(() => setMessage(""), 5000); // Hide the message after 5 seconds
-      // Clear form after submission
+      setTimeout(() => setMessage(""), 3000); 
       setDate("");
       setStartTime("10:30");
       setEndTime("18:00");

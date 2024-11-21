@@ -12,8 +12,35 @@
   text-align: center;
   margin-bottom: 20px;
 }
+.backButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.backButton:hover {
+  background-color: #45a049;
+}
+
+.backButton:focus {
+  outline: none;
+}
 
 .details {
+  position: relative;
   max-width: 900px;
   background-color: #fff;
   border-radius: 10px;
@@ -22,9 +49,7 @@
   margin: 0 auto 20px;
 }
 
-.details p {
-  font-size: 16px;
-  color: #555;
+.workdayInfo {
   margin: 8px 0;
 }
 
@@ -92,10 +117,11 @@
 
 .inputGroup {
   margin-bottom: 15px;
+
 }
 
 .inputGroup label {
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   display: block;
   margin-bottom: 8px;
@@ -105,6 +131,7 @@
   width: 100%;
   padding: 10px;
   font-size: 16px;
+  text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -171,22 +198,25 @@
   width: 20px;
   height: 20px;
 }
-
-.submitEdit svg,
-.cancelEdit svg {
-  width: 18px;
-  height: 18px;
+.twoBtn{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  
 }
 
-.submitEdit,
-.cancelEdit {
-  padding: 12px 20px;
+.submitEdit, .cancelEdit {
+  padding: 14px 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   margin-top: 20px;
-  margin-left: 5px;
   width: auto;
+    display: inline-flex; 
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+  
 }
 
 .submitEdit {
@@ -209,6 +239,45 @@
   background-color: #e53935;
 }
 
+.submitEdit + .cancelEdit {
+  margin-left: 4%;
+}
+
+.submitEdit svg,
+.cancelEdit svg {
+  margin-left: 12px; 
+  width: 18px; 
+  height: 18px; 
+}
+
+
+
+
+.cancelEdit {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.cancelEdit:hover {
+  background-color: #e53935;
+}
+.totals {
+  color: #3ca802;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.shekelIcon {
+  margin-left: 5px;
+  font-size: 18px;
+  color: #3ca802;
+}
+
 .loading,
 .error {
   text-align: center;
@@ -229,7 +298,7 @@
 @media (max-width: 768px) {
   .container {
     padding: 10px;
-    max-width: 100%; /* Ensure full-width on smaller screens */
+    max-width: 100%; 
   }
 
   .title {
@@ -239,24 +308,24 @@
   .details {
     padding: 15px;
     width: 100%;
-    margin: 0 auto 20px; /* Ensures the details remain centered */
+    margin: 0 auto 20px;
   }
 
   .inputGroup input {
-    font-size: 14px;
+    font-size: 18px;
     padding: 8px;
   }
 
   .submitEdit,
   .cancelEdit {
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 18px;
   }
 
   .actionButtons {
     flex-direction: row;
     gap: 10px;
-    justify-content: center; /* Center the buttons */
+    justify-content: center; 
   }
 
   .editBtn,

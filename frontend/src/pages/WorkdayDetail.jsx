@@ -3,16 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getWorkdayById, deleteWorkday } from "../utils/api";
 import classes from "../style/WorkdayDetail.module.css";
 import { CiEdit } from "react-icons/ci";
-import { MdDelete } from "react-icons/md";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { IoMdTime } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdTime } from "react-icons/io";
 import { FcMoneyTransfer } from "react-icons/fc";
-import { FaMoneyCheck } from "react-icons/fa";
-import { FaHourglassEnd } from "react-icons/fa";
+import { FaMoneyCheck, FaHourglassEnd } from "react-icons/fa";
 import { BsCash } from "react-icons/bs";
-
-
-
+import { FaShekelSign } from "react-icons/fa6";
+import { MdCancel, MdDelete } from "react-icons/md";
 
 const WorkdayDetails = () => {
   const navigate = useNavigate();
@@ -155,24 +151,69 @@ const WorkdayDetails = () => {
         המשמרת של {new Date(workday.date).toLocaleDateString()}
       </h1>
       {!editing ? (
-   <div className={`${classes.details} ${classes.detailsNonEditable}`}>
-   <p><IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת התחלה: {workday.startHour}</p>
-   <p><IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת סיום: {workday.endHour}</p>
-   <p><FaHourglassEnd className={`${classes.icon} ${classes.time}`} /> שעות עבודה: {workday.hoursWorked}</p>
-   <p><FaMoneyCheck className={`${classes.icon} ${classes.money}`} /> כסף שהולך לצ'ק: {workday.checkEarnings}</p>
-   <p><BsCash className={`${classes.icon} ${classes.cash}`} /> השלמה: {workday.cashEarnings}</p>
-   <p><FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} /> טיפים: {workday.tips}</p>
-   <p><FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} /> טיפים לשעה: {workday.hourlyTips || 0}</p>
-   <p>שכר שעתי: {(workday.totalEarnings / workday.hoursWorked).toFixed(1)}</p>
-   <p>סך הכל: {workday.totalEarnings}</p>
- </div>
+        <div className={`${classes.details} ${classes.detailsNonEditable}`}>
+          <button
+            className={classes.backButton}
+            onClick={() => navigate("/allWorkDays")}
+          >
+            <IoMdArrowRoundBack />
+          </button>
+          <p className={classes.workdayInfo}>
+            <IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת
+            התחלה: {workday.startHour}
+          </p>
+          <p className={classes.workdayInfo}>
+            <IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת סיום:{" "}
+            {workday.endHour}
+          </p>
+          <p className={classes.workdayInfo}>
+            <FaHourglassEnd className={`${classes.icon} ${classes.time}`} />{" "}
+            שעות עבודה: {workday.hoursWorked}
+          </p>
+          <p className={classes.workdayInfo}>
+            <FaMoneyCheck className={`${classes.icon} ${classes.money}`} /> כסף
+            שהולך לצ'ק: {workday.checkEarnings}
+          </p>
+          <p className={classes.workdayInfo}>
+            <BsCash className={`${classes.icon} ${classes.cash}`} /> השלמה:{" "}
+            {workday.cashEarnings}
+          </p>
+          <p className={classes.workdayInfo}>
+            <FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} />{" "}
+            טיפים: {workday.tips}
+          </p>
+          <p className={classes.workdayInfo}>
+            <FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} />{" "}
+            טיפים לשעה: {workday.hourlyTips || 0}
+          </p>
+          <p className={classes.workdayInfo}>
+            שכר שעתי: {(workday.totalEarnings / workday.hoursWorked).toFixed(1)}
+          </p>
+          <p className={classes.totals}>
+            סך הכל: {workday.totalEarnings}
+            <FaShekelSign className={classes.shekelIcon} />
+          </p>
+
+          <div className={classes.actionButtons}>
+            <button className={classes.editBtn} onClick={handleEditToggle}>
+              ערוך משמרת
+              <CiEdit />
+            </button>
+            <button className={classes.deleteBtn} onClick={handleDelete}>
+              מחק משמרת
+              <MdDelete />
+            </button>
+          </div>
+        </div>
       ) : (
         <form
           onSubmit={handleSubmit}
           className={`${classes.form} ${classes.formEditable}`}
         >
           <div className={classes.inputGroup}>
-            <label htmlFor="startHour"><IoMdTime className={classes.icon} /> שעת התחלה:</label>
+            <label htmlFor="startHour">
+              <IoMdTime className={classes.icon} /> שעת התחלה:
+            </label>
             <input
               type="time"
               id="startHour"
@@ -183,7 +224,9 @@ const WorkdayDetails = () => {
             />
           </div>
           <div className={classes.inputGroup}>
-            <label htmlFor="endHour"><IoMdTime className={classes.icon} /> שעת סיום:</label>
+            <label htmlFor="endHour">
+              <IoMdTime className={classes.icon} /> שעת סיום:
+            </label>
             <input
               type="time"
               id="endHour"
@@ -195,7 +238,9 @@ const WorkdayDetails = () => {
           </div>
 
           <div className={classes.inputGroup}>
-            <label htmlFor="tips"><FcMoneyTransfer className={classes.icon} /> טיפים:</label>
+            <label htmlFor="tips">
+              <FcMoneyTransfer className={classes.icon} /> טיפים:
+            </label>
             <input
               type="number"
               id="tips"
@@ -206,7 +251,9 @@ const WorkdayDetails = () => {
             />
           </div>
           <div className={classes.inputGroup}>
-            <label htmlFor="hourlyTips"><FcMoneyTransfer className={classes.icon} /> טיפים לשעה:</label>
+            <label htmlFor="hourlyTips">
+              <FcMoneyTransfer className={classes.icon} /> טיפים לשעה:
+            </label>
             <input
               type="number"
               id="hourlyTips"
@@ -216,10 +263,18 @@ const WorkdayDetails = () => {
               min={0}
             />
           </div>
-          <button className={classes.submitEdit} type="submit">שמור</button>
-          <button className={classes.cancelEdit} onClick={handleEditToggle} type="button">
-            בטל עריכה
+          <div className={classes.twoBtn}>
+          <button className={classes.submitEdit} type="submit">
+            שמור<CiEdit/>
           </button>
+          <button
+            className={classes.cancelEdit}
+            onClick={handleEditToggle}
+            type="button"
+          >
+            בטל עריכה<MdCancel />
+          </button>
+          </div>
         </form>
       )}
     </div>

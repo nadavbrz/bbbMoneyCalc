@@ -36,11 +36,19 @@ const RegisterForm = () => {
 
     try {
       const response = await api.registerUser({ mail, password });
-      setSuccess(response.message);
-      navigate("/addWorkDay");
+  
+      if (response.token) {
+        localStorage.setItem("token", response.token);  
+        setSuccess(response.message);
+        navigate("/addWorkDay");
+        window.location.reload();
+      } else {
+        setError("Token not received. Please try again.");
+      }
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || "Unexpected error occurred.");
     }
+  
   };
 
   return (
