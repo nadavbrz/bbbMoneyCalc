@@ -4,7 +4,9 @@ import classes from "../style/WorkdayForm.module.css";
 import { MdOutlineDateRange } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoSunny, IoMoon } from "react-icons/io5";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
+// import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { FcMoneyTransfer } from "react-icons/fc";
+
 
 const WorkdayForm = () => {
   const token = localStorage.getItem("token");
@@ -98,150 +100,151 @@ const WorkdayForm = () => {
       {!token && (
         <h1 className={classes.loginText}>תתחבר/י כדי להוסיף משמרת</h1>
       )}
-      <form className={classes.form} onSubmit={handleSubmit}>
-        {token && <h2 className={classes.title}>הוספת משמרת</h2>}
-        <div className={classes.formGroup}>
-          <label htmlFor="date" className={classes.label}>
-            <MdOutlineDateRange className={classes.icon} /> תאריך:
-          </label>
-          <input
-            type="date"
-            id="date"
-            className={classes.input}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="startTime" className={classes.label}>
-            <IoMdTime className={classes.icon} /> זמן התחלה:
-          </label>
-          <input
-            type="time"
-            id="startTime"
-            className={classes.input}
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            step="900"
-            required
-          />
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="endTime" className={classes.label}>
-            <IoMdTime className={classes.icon} /> זמן סיום:
-          </label>
-          <input
-            type="time"
-            id="endTime"
-            className={classes.input}
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-            step="900"
-            required
-          />
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="shiftTiming" className={classes.label}>
-            <IoSunny className={classes.icon} /> /{" "}
-            <IoMoon className={classes.icon} /> בחר זמן משמרת:
-          </label>
-          <select
-            id="shiftTiming"
-            className={classes.select}
-            value={shiftTiming}
-            onChange={(e) => setShiftTiming(e.target.value)}
-          >
-            <option value="morning">בוקר</option>
-            <option value="evening">ערב</option>
-          </select>
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="shiftType" className={classes.label}>
-            בחר סוג משמרת:
-          </label>
-          <select
-            id="shiftType"
-            className={classes.select}
-            value={shiftType}
-            onChange={(e) => setShiftType(e.target.value)}
-          >
-            <option value="part-time">חלקית</option>
-            <option value="full-time">מלאה</option>
-          </select>
-        </div>
-        <div className={classes.checkboxGroup}>
-          <label className={classes.checkboxLabel}>
-            שישי ערב:
-            <input
-              type="checkbox"
-              name="shift"
-              checked={isFridayEvening}
-              onChange={() => {
-                if (isFridayEvening) {
-                  setIsFridayEvening(false);
-                } else {
-                  setIsFridayEvening(true);
-                  setIsSaturday(false);
-                }
-              }}
-            />
-          </label>
-          <label className={classes.checkboxLabel}>
-            שבת בוקר:
-            <input
-              type="checkbox"
-              name="shift"
-              checked={isSaturday}
-              onChange={() => {
-                if (isSaturday) {
-                  setIsSaturday(false);
-                } else {
-                  setIsSaturday(true);
-                  setIsFridayEvening(false);
-                }
-              }}
-            />
-          </label>
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="tips" className={classes.label}>
-            <FaRegMoneyBillAlt className={classes.icon} /> טיפים:
-          </label>
-          <input
-            type="number"
-            id="tips"
-            className={classes.input}
-            value={tips}
-            onChange={(e) => setTips(Number(e.target.value))}
-            onBlur={calculateTotalEarnings}
-            min={0}
-          />
-        </div>
-        <div className={classes.formGroup}>
-          <label htmlFor="hourlyTips" className={classes.label}>
-            <FaRegMoneyBillAlt className={classes.icon} /> טיפים לשעה:
-          </label>
-          <input
-            type="number"
-            id="hourlyTips"
-            className={classes.input}
-            value={hourlyTips}
-            onChange={(e) => setHourlyTips(Number(e.target.value))}
-            onBlur={calculateTotalEarnings}
-            min={0}
-          />
-        </div>
-        <div className={classes.submitBox}>
-          {token && !loading && (
-            <button type="submit" className={classes.submitButton}>
-              שמור משמרת
-            </button>
-          )}
-          {loading && <p className={classes.loadingText}>שומר... </p>}
-          <p className={classes.submitMessage}>{message}</p>
-        </div>
-      </form>
+   <form className={classes.form} onSubmit={handleSubmit}>
+  {token && <h2 className={classes.title}>הוספת משמרת</h2>}
+  <div className={classes.formGroup}>
+    <label htmlFor="date" className={classes.label}>
+      <MdOutlineDateRange className={`${classes.icon} ${classes.dateIcon}`} /> תאריך:
+    </label>
+    <input
+      type="date"
+      id="date"
+      className={classes.input}
+      value={date}
+      onChange={(e) => setDate(e.target.value)}
+      required
+    />
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="startTime" className={classes.label}>
+      <IoMdTime className={`${classes.icon} ${classes.timeIcon}`} /> זמן התחלה:
+    </label>
+    <input
+      type="time"
+      id="startTime"
+      className={classes.input}
+      value={startTime}
+      onChange={(e) => setStartTime(e.target.value)}
+      step="900"
+      required
+    />
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="endTime" className={classes.label}>
+      <IoMdTime className={`${classes.icon} ${classes.timeIcon}`} /> זמן סיום:
+    </label>
+    <input
+      type="time"
+      id="endTime"
+      className={classes.input}
+      value={endTime}
+      onChange={(e) => setEndTime(e.target.value)}
+      step="900"
+      required
+    />
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="shiftTiming" className={classes.label}>
+      <IoSunny className={`${classes.icon} ${classes.shiftIcon}`} /> /{" "}
+      <IoMoon className={`${classes.icon} ${classes.shiftIcon}`} /> בחר זמן משמרת:
+    </label>
+    <select
+      id="shiftTiming"
+      className={classes.select}
+      value={shiftTiming}
+      onChange={(e) => setShiftTiming(e.target.value)}
+    >
+      <option value="morning">בוקר</option>
+      <option value="evening">ערב</option>
+    </select>
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="shiftType" className={classes.label}>
+      בחר סוג משמרת:
+    </label>
+    <select
+      id="shiftType"
+      className={classes.select}
+      value={shiftType}
+      onChange={(e) => setShiftType(e.target.value)}
+    >
+      <option value="part-time">חלקית</option>
+      <option value="full-time">מלאה</option>
+    </select>
+  </div>
+  <div className={classes.checkboxGroup}>
+    <label className={classes.checkboxLabel}>
+      שישי ערב:
+      <input
+        type="checkbox"
+        name="shift"
+        checked={isFridayEvening}
+        onChange={() => {
+          if (isFridayEvening) {
+            setIsFridayEvening(false);
+          } else {
+            setIsFridayEvening(true);
+            setIsSaturday(false);
+          }
+        }}
+      />
+    </label>
+    <label className={classes.checkboxLabel}>
+      שבת בוקר:
+      <input
+        type="checkbox"
+        name="shift"
+        checked={isSaturday}
+        onChange={() => {
+          if (isSaturday) {
+            setIsSaturday(false);
+          } else {
+            setIsSaturday(true);
+            setIsFridayEvening(false);
+          }
+        }}
+      />
+    </label>
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="tips" className={classes.label}>
+      <FcMoneyTransfer className={`${classes.icon} ${classes.tipsIcon}`} /> טיפים:
+    </label>
+    <input
+      type="number"
+      id="tips"
+      className={classes.input}
+      value={tips}
+      onChange={(e) => setTips(Number(e.target.value))}
+      onBlur={calculateTotalEarnings}
+      min={0}
+    />
+  </div>
+  <div className={classes.formGroup}>
+    <label htmlFor="hourlyTips" className={classes.label}>
+      <FcMoneyTransfer className={`${classes.icon} ${classes.tipsIcon}`} /> טיפים לשעה:
+    </label>
+    <input
+      type="number"
+      id="hourlyTips"
+      className={classes.input}
+      value={hourlyTips}
+      onChange={(e) => setHourlyTips(Number(e.target.value))}
+      onBlur={calculateTotalEarnings}
+      min={0}
+    />
+  </div>
+  <div className={classes.submitBox}>
+    {token && !loading && (
+      <button type="submit" className={classes.submitButton}>
+        שמור משמרת
+      </button>
+    )}
+    {loading && <p className={classes.loadingText}>שומר... </p>}
+    <p className={classes.submitMessage}>{message}</p>
+  </div>
+</form>
+
     </>
   );
 };

@@ -5,6 +5,14 @@ import classes from "../style/WorkdayDetail.module.css";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdTime } from "react-icons/io";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { FaMoneyCheck } from "react-icons/fa";
+import { FaHourglassEnd } from "react-icons/fa";
+import { BsCash } from "react-icons/bs";
+
+
+
 
 const WorkdayDetails = () => {
   const navigate = useNavigate();
@@ -147,40 +155,24 @@ const WorkdayDetails = () => {
         המשמרת של {new Date(workday.date).toLocaleDateString()}
       </h1>
       {!editing ? (
-        <div className={`${classes.details} ${classes.detailsNonEditable}`}>
-          <p>שעת התחלה: {workday.startHour}</p>
-          <p>שעת סיום: {workday.endHour}</p>
-          <p>שעות עבודה: {workday.hoursWorked}</p>
-          <p>כסף שהולך לצ'ק: {workday.checkEarnings}</p>
-          <p>השלמה: {workday.cashEarnings}</p>
-          <p>טיפים: {workday.tips}</p>
-          <p>טיפים לשעה: {workday.hourlyTips || 0}</p>
-          <p>
-            שכר שעתי: {(workday.totalEarnings / workday.hoursWorked).toFixed(1)}
-          </p>
-          <p>סך הכל: {workday.totalEarnings}</p>
-          <div className={classes.actionButtons}>
-            <button className={classes.editBtn} onClick={handleEditToggle}>
-              ערוך <CiEdit />
-            </button>
-            <button className={classes.deleteBtn} onClick={handleDelete}>
-              מחק משמרת <MdDelete />
-            </button>
-            <button
-              className={classes.backBtn}
-              onClick={() => navigate("/allWorkDays")}
-            >
-              חזור <IoMdArrowRoundBack />
-            </button>
-          </div>
-        </div>
+   <div className={`${classes.details} ${classes.detailsNonEditable}`}>
+   <p><IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת התחלה: {workday.startHour}</p>
+   <p><IoMdTime className={`${classes.icon} ${classes.time}`} /> שעת סיום: {workday.endHour}</p>
+   <p><FaHourglassEnd className={`${classes.icon} ${classes.time}`} /> שעות עבודה: {workday.hoursWorked}</p>
+   <p><FaMoneyCheck className={`${classes.icon} ${classes.money}`} /> כסף שהולך לצ'ק: {workday.checkEarnings}</p>
+   <p><BsCash className={`${classes.icon} ${classes.cash}`} /> השלמה: {workday.cashEarnings}</p>
+   <p><FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} /> טיפים: {workday.tips}</p>
+   <p><FcMoneyTransfer className={`${classes.icon} ${classes.tips}`} /> טיפים לשעה: {workday.hourlyTips || 0}</p>
+   <p>שכר שעתי: {(workday.totalEarnings / workday.hoursWorked).toFixed(1)}</p>
+   <p>סך הכל: {workday.totalEarnings}</p>
+ </div>
       ) : (
         <form
           onSubmit={handleSubmit}
           className={`${classes.form} ${classes.formEditable}`}
         >
           <div className={classes.inputGroup}>
-            <label htmlFor="startHour">שעת התחלה:</label>
+            <label htmlFor="startHour"><IoMdTime className={classes.icon} /> שעת התחלה:</label>
             <input
               type="time"
               id="startHour"
@@ -191,7 +183,7 @@ const WorkdayDetails = () => {
             />
           </div>
           <div className={classes.inputGroup}>
-            <label htmlFor="endHour">שעת סיום:</label>
+            <label htmlFor="endHour"><IoMdTime className={classes.icon} /> שעת סיום:</label>
             <input
               type="time"
               id="endHour"
@@ -203,7 +195,7 @@ const WorkdayDetails = () => {
           </div>
 
           <div className={classes.inputGroup}>
-            <label htmlFor="tips">טיפים:</label>
+            <label htmlFor="tips"><FcMoneyTransfer className={classes.icon} /> טיפים:</label>
             <input
               type="number"
               id="tips"
@@ -214,7 +206,7 @@ const WorkdayDetails = () => {
             />
           </div>
           <div className={classes.inputGroup}>
-            <label htmlFor="hourlyTips">טיפים לשעה:</label>
+            <label htmlFor="hourlyTips"><FcMoneyTransfer className={classes.icon} /> טיפים לשעה:</label>
             <input
               type="number"
               id="hourlyTips"

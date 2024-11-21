@@ -2,8 +2,8 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   text-align: center;
-  max-width: 600px;  /* Increased max-width */
-  margin: 0 auto; /* This centers the container */
+  width: 600px;
+  margin: 0 auto;
 }
 
 .title {
@@ -108,6 +108,75 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.icon {
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.icon.time {
+  color: #2196f3;
+}
+
+.icon.money {
+  color: #4caf50;
+}
+
+.icon.cash {
+  color: #3ca802;
+}
+
+.icon.tips {
+  color: #ff9800;
+}
+
+.editBtn .icon,
+.deleteBtn .icon,
+.backBtn .icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+}
+
+.inputGroup input[type="time"] {
+  padding-left: 30px;
+  background-position: 10px center;
+}
+
+.inputGroup input[type="number"] {
+  padding-left: 30px;
+  background-position: 10px center;
+}
+
+.inputGroup input[type="time"]::before,
+.inputGroup input[type="number"]::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+}
+
+.editBtn svg,
+.deleteBtn svg,
+.backBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.submitEdit svg,
+.cancelEdit svg {
+  width: 18px;
+  height: 18px;
+}
 
 .submitEdit,
 .cancelEdit {
@@ -116,13 +185,14 @@
   font-size: 16px;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 5px;
+  width: auto;
 }
 
 .submitEdit {
   background-color: #4caf50;
   color: white;
   border: none;
-  width: 48%;
 }
 
 .submitEdit:hover {
@@ -133,7 +203,6 @@
   background-color: #f44336;
   color: white;
   border: none;
-  width: 48%;
 }
 
 .cancelEdit:hover {
@@ -193,7 +262,7 @@
   .editBtn,
   .deleteBtn,
   .backBtn {
-    width: auto; 
+    width: auto;
     padding: 12px 20px;
     font-size: 16px;
   }
@@ -205,4 +274,3 @@
     height: 18px;
   }
 }
-
