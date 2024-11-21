@@ -1,8 +1,9 @@
 .container {
   padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
   font-family: Arial, sans-serif;
+  text-align: center;
+  max-width: 600px;  /* Increased max-width */
+  margin: 0 auto; /* This centers the container */
 }
 
 .title {
@@ -13,11 +14,12 @@
 }
 
 .details {
+  max-width: 900px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 }
 
 .details p {
@@ -32,66 +34,53 @@
 
 .actionButtons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 15px;
   margin-top: 20px;
-  gap: 10px;
 }
 
-.editBtn {
+.editBtn,
+.deleteBtn,
+.backBtn {
   background-color: #ffa500;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  width: 32%;
+  justify-content: center;
+  text-align: center;
 }
 
 .editBtn:hover {
   background-color: #ff8c00;
 }
 
-.editBtn svg {
-  margin-left: 5px;
-}
-
 .deleteBtn {
   background-color: #f44336;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
 .deleteBtn:hover {
   background-color: #e53935;
 }
 
-.deleteBtn svg {
-  margin-left: 5px;
-}
-
 .backBtn {
   background-color: #2196f3;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
 .backBtn:hover {
   background-color: #1976d2;
 }
 
+.editBtn svg,
+.deleteBtn svg,
 .backBtn svg {
   margin-left: 5px;
+  width: 16px;
+  height: 16px;
 }
 
 .form {
@@ -171,6 +160,7 @@
 @media (max-width: 768px) {
   .container {
     padding: 10px;
+    max-width: 100%; /* Ensure full-width on smaller screens */
   }
 
   .title {
@@ -179,6 +169,8 @@
 
   .details {
     padding: 15px;
+    width: 100%;
+    margin: 0 auto 20px; /* Ensures the details remain centered */
   }
 
   .inputGroup input {
@@ -193,15 +185,24 @@
   }
 
   .actionButtons {
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
+    justify-content: center; /* Center the buttons */
   }
 
   .editBtn,
   .deleteBtn,
   .backBtn {
-    width: 100%;
-    padding: 12px 0;
+    width: auto; 
+    padding: 12px 20px;
     font-size: 16px;
   }
+
+  .editBtn svg,
+  .deleteBtn svg,
+  .backBtn svg {
+    width: 18px;
+    height: 18px;
+  }
 }
+

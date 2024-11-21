@@ -8,20 +8,68 @@
   position: relative;
 }
 
+.addBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #007bff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addBtn:hover {
+  background-color: #f0f0f0;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.addBtn:active {
+  transform: translateY(2px);
+}
+
+.addBtn svg {
+  margin-top: 5px;
+  color: #007bff;
+  width: 24px;
+  height: 24px;
+}
+
+.monthAndNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.month {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+  z-index: 1;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding: 10px 20px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 150px;
 }
 
-/* Buttons for previous and next month */
-.nextButton,
-.prevButton {
+.prevButton,
+.nextButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,77 +78,57 @@
   border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 25px; /* Rounded, more modern button */
+  border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Add slight shadow for depth */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nextButton:hover,
-.prevButton:hover {
+.prevButton:hover,
+.nextButton:hover {
   background-color: #0056b3;
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
 }
 
-.nextButton:active,
-.prevButton:active {
-  transform: translateY(2px); 
+.prevButton:active,
+.nextButton:active {
+  transform: translateY(2px);
 }
 
-.nextButton svg,
-.prevButton svg {
-  margin-right: 8px;
-  width: 16px; 
+.prevButton svg,
+.nextButton svg {
+  width: 16px;
   height: 16px;
-}
-
-/* Ensuring the buttons are aligned */
-.nextButton {
-  margin-left: auto;
-  margin-right: 20px;
-}
-
-.prevButton {
-  margin-right: auto;
-  margin-left: 20px;
-
-}
-
-/* Month heading */
-.month {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333; /* Darker color for better contrast */
-  text-align: center;
-  margin: 0;
 }
 
 .totals {
   background-color: #e8f4ff;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .totals h3 {
-  font-size: 18px;
+  font-size: 22px;
   color: #333;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .totals p {
-  margin: 4px 0;
-  font-size: 18px;
+  font-size: 20px;
+  color: #555;
+  margin: 8px 0;
+  font-weight: 500;
 }
 
-.addBtn {
-  cursor: pointer;
-  display: inline;
-  position: absolute;
-  top: 8px;
-  right: 20px;
-  z-index: 10;
+.totals p b {
+  color: #007bff;
+  font-size: 22px;
 }
 
 .workdayList {
@@ -111,76 +139,85 @@
 
 .noWorkdays {
   color: #999;
-  font-style: italic;
   text-align: center;
 }
 
 @media (max-width: 600px) {
   .addBtn {
-    top: 15px;  
-    right: 15px; 
+    top: 15px;
+    right: 15px;
   }
+
+  .monthAndNavigation {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .month {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
   .navigation {
-    align-items: flex-start;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prevButton,
+  .nextButton {
+    font-size: 14px;
+    padding: 8px 16px;
+    min-width: 100px;
   }
 
   .totals {
-    padding: 10px;
+    padding: 15px;
   }
 
   .totals p {
     font-size: 16px;
   }
-
-  .nextButton, .prevButton {
-    font-size: 12px;
-    padding: 3px 7px;
-  }
-
-  .addBtn {
-    bottom: 20px;
-    right: 20px;
-    z-index: 10;
-  }
 }
+
 @media (max-width: 462px) {
   .addBtn {
-    top: 10px;  
-    right: 18px;  
+    top: 10px;
+    right: 10px;
   }
 
-  .navigation {
-    align-items: center; 
-    gap: 8px; 
-  }
-
-  .totals {
-    padding: 8px;
-    margin-bottom: 12px;
-  }
-
-  .totals h3 {
-    font-size: 14px;  /* Further reduce font size */
-  }
-
-  .totals p {
-    font-size: 16px;  
-  }
-
-  .nextButton, .prevButton {
-    font-size: 10px;
-    padding: 3px 6px;
-    width: 100%; 
-    text-align: center;
-  }
-
-  .workdayList {
-    gap: 6px;  
+  .monthAndNavigation {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
   }
 
   .month {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  .navigation {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prevButton,
+  .nextButton {
+    font-size: 12px;
+    padding: 6px 12px;
+    min-width: 90px;
+  }
+
+  .totals {
+    padding: 12px;
+  }
+
+  .totals p {
+    font-size: 14px;
   }
 }
-
