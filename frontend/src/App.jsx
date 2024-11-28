@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./components/Root";
+import Root from "./components/Root";  
 import Home from "./pages/Home";
 import AddWorkday from "./pages/AddWorkday";
 import RegisterForm from "./pages/RegisterForm";
@@ -8,13 +8,14 @@ import Workdays from "./pages/WorkdaysPage";
 import WorkdayDetail from "./pages/WorkdayDetail";
 import ResetPasswordRequestForm from "./pages/ResetPasswordRequestForm";
 import ResetPassword from "./pages/ResetPassword";
+import usePageTracking from "./utils/usePageTracking";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root />,  
     children: [
-      {path :"/" , element : <Home />},
+      { path: "/", element: <Home /> },
       { path: "/addWorkDay", element: <AddWorkday /> },
       { path: "/allWorkDays", element: <Workdays /> },
       { path: "/register", element: <RegisterForm /> },
@@ -28,10 +29,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <RouterProvider router={router}>
+      <RootWithTracking />
+    </RouterProvider>
   );
+}
+
+function RootWithTracking() {
+  usePageTracking();  
+  return <Root />;  
 }
 
 export default App;
