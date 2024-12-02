@@ -6,25 +6,37 @@ const mail = process.env.MAIL;
 
 const register = async (req, res) => {
   const { mail, password } = req.body;
+
+  // Log the incoming email and environment variable
+  console.log("Email from request (mail):", mail);
+  console.log("Admin Email from env (process.env.ADMIN_EMAIL):", process.env.ADMIN_EMAIL);
+
   try {
+    // Check if the user already exists
     const existingUser = await User.findOne({ mail });
     if (existingUser) {
       return res.status(400).json({ message: "המשתמש כבר קיים" });
     }
 
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const role = mail === process.env.ADMIN_EMAIL ? "admin" : "user";  
+    // Determine the user's role based on the email
+    const role = mail === process.env.ADMIN_EMAIL ? "admin" : "user";
+    console.log("Assigned role:", role); // Log the assigned role
 
+    // Create a new user
     const user = new User({ mail, password: hashedPassword, role });
     await user.save();
 
+    // Generate a JWT token
     const token = jwt.sign(
       { userId: user._id, mail: user.mail, role: user.role },
       process.env.SECRET_KEY,
       { expiresIn: "30d" }
     );
 
+    // Respond with success
     res.status(201).json({
       message: "המשתמש נוצר",
       mail: user.mail,
@@ -32,6 +44,7 @@ const register = async (req, res) => {
       token: token,
     });
   } catch (err) {
+    console.error("Error during user registration:", err.message); // Log the error
     res.status(400).json({ message: "שגיאה ביצירת המשתמש", error: err.message });
   }
 };

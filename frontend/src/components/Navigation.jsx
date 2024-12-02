@@ -1,16 +1,16 @@
-// src/components/Navbar.js
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "../style/Navigation.module.css";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");  
+  const isAdmin = localStorage.getItem("role") === "admin";  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    localStorage.removeItem("role");  
+    window.location.href = "/login";   
   };
 
   const toggleMenu = () => {
@@ -24,7 +24,9 @@ const Navigation = () => {
           ☰
         </button>
       </div>
-      <ul className={`${classes.navList} ${isMenuOpen ? classes.showMenu : ""}`}>
+      <ul
+        className={`${classes.navList} ${isMenuOpen ? classes.showMenu : ""}`}
+      >
         <li className={classes.navItem}>
           <Link to="/addWorkDay" className={classes.navLink}>
             הוספת משמרת
@@ -44,8 +46,19 @@ const Navigation = () => {
         )}
         {token && (
           <li className={classes.navItem}>
-            <Link to="/login" className={classes.navLink} onClick={handleLogout}>
+            <Link
+              to="/login"
+              className={classes.navLink}
+              onClick={handleLogout}
+            >
               להתנתק
+            </Link>
+          </li>
+        )}
+        {token && isAdmin && ( 
+          <li className={classes.navItem}>
+            <Link to="/admin" className={classes.navLink}>
+              משתמשים
             </Link>
           </li>
         )}

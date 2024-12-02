@@ -108,6 +108,13 @@ const registerUser = async (userData) => {
 const loginUser = async (userData) => {
   try {
     const response = await api.post("/login", userData);
+    const { role, token } = response.data;
+
+    // Save role and token to localStorage
+    localStorage.setItem("role", role);
+    localStorage.setItem("token", token);
+
+    // Return the response data for further use (if needed)
     return response.data;
   } catch (error) {
     console.error("Error logging in user:", error);
@@ -136,6 +143,19 @@ const resetPassword = async (data) => {
     throw error;
   }
 };
+const getUsers = async (token) => {
+  try {
+    const response = await axios.get(`https://bbb-server.brzcode.site/users/getAllUsers`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data; // List of users
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
 
 export default {
   addWorkday,
@@ -147,4 +167,5 @@ export default {
   deleteWorkday,
   requestPasswordReset,
   resetPassword,
+  getUsers
 };

@@ -94,7 +94,7 @@ const WorkdayList = () => {
       averagePerHour:
         totalHours > 0
           ? (
-              (totalCheckEarnings + totalCashEarnings + totalTips) / 
+              (totalCheckEarnings + totalCashEarnings + totalTips) /
               totalHours
             ).toFixed(1)
           : 0,
@@ -134,7 +134,6 @@ const WorkdayList = () => {
           <IoMdAdd size={30} />
         </Link>
       </p>
-
       <div className={classes.monthAndNavigation}>
         <h2 className={classes.month}>
           {`המשמרות של ${new Date(currentYear, currentMonth - 1).toLocaleString(
